@@ -10,7 +10,6 @@
   },
   "browserslist": "defaults, not ie <= 11",
   "dependencies": {
-    "@headlessui/react": "^1.7.2",
     "@tailwindcss/typography": "^0.5.8",
     "autoprefixer": "^10.4.13",
     "clsx": "^1.2.1",
