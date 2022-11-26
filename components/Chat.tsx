@@ -54,7 +54,7 @@ export function Chat({ setShowDescription }) {
     if (messages.length > 1) {
       setShowDescription(false)
     }
-  }, [messages])
+  }, [messages, setShowDescription])
 
   useEffect(() => {
     if (!cookie[COOKIE_NAME]) {
