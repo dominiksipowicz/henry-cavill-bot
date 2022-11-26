@@ -4,9 +4,12 @@ import { ChatLine } from './ChatLine'
 export function Chat() {
   return (
     <div className="rounded-2xl border-zinc-100 dark:border-zinc-700/40 lg:border lg:p-6">
-      <ChatLine direction="left" />
-      <ChatLine direction="right" />
-      <ChatLine direction="right" />
+      <ChatLine
+        who="henry"
+        message="Hi, let's have a nice and pleasant chat here"
+      />
+      <ChatLine who="user" message="Are you going to play Superman again?" />
+      <ChatLine who="henry" message="Yes, I Am Back as Superman" />
 
       <div className="mt-6 flex">
         <input
