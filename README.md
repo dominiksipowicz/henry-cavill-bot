@@ -26,3 +26,5 @@ Finally, open [http://localhost:3000](http://localhost:3000) in your browser to 
 - [Tailwind UI](https://tailwindui.com)
 - [Headless UI](https://headlessui.dev) - the official Headless UI documentation
 - [MDX](https://mdxjs.com) - the MDX documentation
+- [React](https://reactjs.org/docs) - the official React documentation
+- [TypeScript](https://www.typescriptlang.org/docs) - the official TypeScript documentation
