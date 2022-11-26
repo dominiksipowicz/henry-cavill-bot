@@ -14,7 +14,7 @@ export default async function handler(req: any, res: any) {
 
   const prompt = req.body.prompt;
   const botName = 'Henry';
-  const userName = 'Gabi';
+  const userName = process.env.AI_USER_NAME ?? 'Gabi';
   const defaultPrompt = `I am Henry Cavil. \n\nThis is the conversation between Henry Cavil and a news reporter.\n\n${botName}: ${firstMessge}\nNews reporter: ${prompt}\n${botName}: `;
   const finalPrompt = process.env.OPENAI_API_KEY ? `${process.env.AI_PROMPT}${prompt}\n${botName}: ` : defaultPrompt
   
