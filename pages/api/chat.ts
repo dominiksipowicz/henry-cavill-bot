@@ -17,7 +17,7 @@ export default async function handler(req: any, res: any) {
   
   const payload = {
     model: "text-davinci-002",
-    prompt: process.env.OPENAI_API_KEY ? `${process.env.AI_PROMPT.replace(/\\n/g, '\n')}${prompt}` : defaultPrompt,
+    prompt: process.env.OPENAI_API_KEY ? `${process.env.AI_PROMPT.replace(/\\\\/g, '\\')}${prompt}` : defaultPrompt,
     temperature: process.env.AI_TEMP ? parseFloat(process.env.AI_TEMP) : 0.7,
     max_tokens: process.env.AI_MAX_TOKENS ? parseInt(process.env.AI_MAX_TOKENS) : 1000,
     top_p: 1,
