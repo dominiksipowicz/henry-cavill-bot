@@ -8,8 +8,7 @@ const COOKIE_NAME = 'henry-cavill-chat'
 export const initialMessages: Message[] = [
   {
     who: 'henry',
-    message:
-      'Hi! I’m Henry Cavill, the actor who plays Superman and Geralt of Rivia in the Witcher series. What would you like to know about me?',
+    message: 'Hi! I’m Henry Cavill. What would you like to know about me?',
   },
 ]
 
@@ -56,6 +55,14 @@ export function Chat({ setShowDescription }) {
       setShowDescription(false)
     }
   }, [messages])
+
+  useEffect(() => {
+    if (!cookie[COOKIE_NAME]) {
+      // generate a random id
+      const randomId = Math.random().toString(36).substring(7)
+      setCookie(COOKIE_NAME, randomId)
+    }
+  }, [])
 
   // send message to API /api/chat endpoint
   const sendMessage = async (message: string) => {
