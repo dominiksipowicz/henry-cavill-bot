@@ -1,15 +1,37 @@
+import { useState } from 'react'
 import { Button } from './Button'
-import { ChatLine } from './ChatLine'
+import { type Message, ChatLine, LoadingChatLine } from './ChatLine'
+import { useCookies } from 'react-cookie'
+
+const initialMessages: Message[] = [
+  {
+    who: 'henry',
+    message:
+      'Hi! I’m Henry Cavill, the actor who plays Superman and Geralt of Rivia in the Witcher series. What would you like to know about me?',
+  },
+  {
+    who: 'user',
+    message: 'Are you going to play Superman again?',
+  },
+  {
+    who: 'henry',
+    message: 'Yes, I Am Back as Superman',
+  },
+]
 
 export function Chat() {
+  const [messages, setMessages] = useState<Message[]>(initialMessages)
+  const [input, setInput] = useState('')
+  const [loading, setLoading] = useState(false)
+  const [cookie, setCookie] = useCookies(['HenryChat'])
+
   return (
     <div className="rounded-2xl border-zinc-100 dark:border-zinc-700/40 lg:border lg:p-6">
-      <ChatLine
-        who="henry"
-        message="Hi, let's have a nice and pleasant chat here"
-      />
-      <ChatLine who="user" message="Are you going to play Superman again?" />
-      <ChatLine who="henry" message="Yes, I Am Back as Superman" />
+      {messages.map(({ message, who }, index) => (
+        <ChatLine key={index} who={who} message={message} />
+      ))}
+
+      {loading && <LoadingChatLine />}
 
       <div className="mt-6 flex">
         <input
