@@ -1,25 +1,28 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Henry Cavill Chat Bot
 
-Preview: [https://henry-cavill-bot.vercel.app](https://henry-cavill-bot.vercel.app)
+This is a chat bot that will respond to you with Henry Cavill character quotes, images, and light hearted jokes.
+
+## Getting started
+
+To get started with this template, first install the npm dependencies:
+
+```bash
+npm install
+```
+
+Next, run the development server:
+
+```bash
+npm run dev
+```
+
+Finally, open [http://localhost:3000](http://localhost:3000) in your browser to view the website.
 
 ## Techstack
 
-- [Next.js](https://nextjs.org/)
-  - API Routes
-  - Serverless Functions
-  - SSG/ISR (Static Site Generation/Incremental Static Regeneration)
-- [TailwindCSS](https://tailwindcss.com/)
-- [TailWidnUI](https://tailwindui.com/)
-- [Vercel](https://vercel.com/)
-- [React](https://reactjs.org/)
-- [TypeScript](https://www.typescriptlang.org/)
-
-## Getting Started
-
-First, run the development server:
-
-```bash
-yarn dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- [Vercel](https://vercel.com/) - hosting, edge, serverless functions, CDN, analytics
+- [Next.js](https://nextjs.org/docs) - the official Next.js documentation
+- [Tailwind CSS](https://tailwindcss.com/docs) - the official Tailwind CSS documentation
+- [Tailwind UI](https://tailwindui.com)
+- [Headless UI](https://headlessui.dev) - the official Headless UI documentation
+- [MDX](https://mdxjs.com) - the MDX documentation
