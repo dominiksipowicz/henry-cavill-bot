@@ -5,7 +5,7 @@ import { useCookies } from 'react-cookie'
 
 const COOKIE_NAME = 'henry-cavill-chat'
 
-const initialMessages: Message[] = [
+export const initialMessages: Message[] = [
   {
     who: 'henry',
     message:
