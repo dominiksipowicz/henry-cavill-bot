@@ -23,8 +23,5 @@ Finally, open [http://localhost:3000](http://localhost:3000) in your browser to 
 - [Vercel](https://vercel.com/) - hosting, edge, serverless functions, CDN, analytics
 - [Next.js](https://nextjs.org/docs) - the official Next.js documentation
 - [Tailwind CSS](https://tailwindcss.com/docs) - the official Tailwind CSS documentation
-- [Tailwind UI](https://tailwindui.com)
-- [Headless UI](https://headlessui.dev) - the official Headless UI documentation
-- [MDX](https://mdxjs.com) - the MDX documentation
 - [React](https://reactjs.org/docs) - the official React documentation
 - [TypeScript](https://www.typescriptlang.org/docs) - the official TypeScript documentation
