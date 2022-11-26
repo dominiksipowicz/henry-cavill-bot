@@ -1,9 +1,10 @@
 import Head from 'next/head'
+import type { NextPage } from 'next'
 
 import { Container } from '../components/Container'
 import { Chat } from '../components/Chat'
 
-export default function Home() {
+const Home: NextPage = () => {
   return (
     <>
       <Head>
@@ -43,3 +44,5 @@ export async function getStaticProps() {
     props: {},
   }
 }
+
+export default Home
