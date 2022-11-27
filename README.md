@@ -4,8 +4,6 @@ This is a chat bot that will respond to you with Henry Cavill character quotes, 
 
 ![CleanShot 2022-11-27 at 01 58 18](https://user-images.githubusercontent.com/1570963/204115790-d919dc4d-29ca-42f1-88f1-439df882aef7.png)
 
-
-
 ## Getting started
 
 To get started with this template, first install the npm dependencies:
@@ -38,3 +36,4 @@ Finally, open [http://localhost:3000](http://localhost:3000) in your browser to 
 - [React](https://reactjs.org/docs) - the official React documentation
 - [TypeScript](https://www.typescriptlang.org/docs) - the official TypeScript documentation
 - [OpenAI](https://beta.openai.com/docs/introduction) - the official OpenAI documentation
+- `react-wrap-balancer` - [Enhances the look of messages](https://react-wrap-balancer.vercel.app/)
