@@ -118,8 +118,14 @@ export function Footer() {
               <p className="text-sm text-zinc-400 dark:text-zinc-500">
                 &copy; {new Date().getFullYear()} Dom
               </p>
-              <SocialLink href="#" icon={TwitterIcon} />
-              <SocialLink href="#" icon={GitHubIcon} />
+              <SocialLink
+                href="https://twitter.com/dom_sipowicz"
+                icon={TwitterIcon}
+              />
+              <SocialLink
+                href="https://github.com/dominiksipowicz/henry-cavill-bot"
+                icon={GitHubIcon}
+              />
               <ThemeSwitcher />
             </div>
           </Container.Inner>
