@@ -2,6 +2,10 @@
 
 This is a chat bot that will respond to you with Henry Cavill character quotes, images, and light hearted jokes.
 
+![CleanShot 2022-11-27 at 01 58 18](https://user-images.githubusercontent.com/1570963/204115790-d919dc4d-29ca-42f1-88f1-439df882aef7.png)
+
+
+
 ## Getting started
 
 To get started with this template, first install the npm dependencies:
