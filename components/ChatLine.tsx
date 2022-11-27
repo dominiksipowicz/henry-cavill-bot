@@ -1,4 +1,5 @@
 import clsx from 'clsx'
+import Image from 'next/image'
 
 export type Message = {
   who: 'henry' | 'user' | undefined
@@ -35,10 +36,13 @@ export function ChatLine({ who = 'henry', message }: Message) {
       <div className="flex space-x-3">
         <div className="flex-shrink-0">
           {who === 'henry' ? (
-            <img
+            <Image
               className="h-16 w-16 rounded-full"
-              src="https://i.guim.co.uk/img/media/23ca2ec0ef254b2f5cfb4a1953c4e8b7a2483e19/0_273_4585_2751/master/4585.jpg?width=1200&height=1200&quality=85&auto=format&fit=crop&s=1cde5e943fc55369e6d0fbf91704daf6"
-              alt=""
+              src="https://res.cloudinary.com/df2kntp8j/image/upload/v1669507570/henry1_wyva9x.png"
+              alt="Henry Cavill"
+              width={64}
+              height={64}
+              priority
             />
           ) : (
             <div className="h-16 w-16 rounded-full bg-gray-300" />
@@ -52,7 +56,7 @@ export function ChatLine({ who = 'henry', message }: Message) {
           </p>
           <p
             className={clsx(
-              'text-lg ',
+              'text ',
               who == 'henry'
                 ? 'font-bold dark:text-gray-400'
                 : 'text-gray-400 dark:text-gray-500'
