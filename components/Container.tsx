@@ -1,4 +1,3 @@
-import { forwardRef } from 'react'
 import clsx from 'clsx'
 
 const OuterContainer = ({ className = '', children, ...props }) => {
