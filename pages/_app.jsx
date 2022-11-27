@@ -3,6 +3,12 @@ import { Analytics } from '@vercel/analytics/react'
 import { Footer } from '../components/Footer'
 import { Header } from '../components/Header'
 
+import { Inter } from '@next/font/google'
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-inter',
+})
+
 import '../styles/tailwind.css'
 
 export default function App({ Component, pageProps }) {
@@ -15,7 +21,7 @@ export default function App({ Component, pageProps }) {
       </div>
       <div className="relative">
         <Header />
-        <main>
+        <main className={`${inter.variable} font-sans`}>
           <Component {...pageProps} />
         </main>
         <Footer />
