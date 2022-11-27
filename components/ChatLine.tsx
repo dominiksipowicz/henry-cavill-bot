@@ -1,5 +1,9 @@
 import clsx from 'clsx'
 import Image from 'next/image'
+import Balancer from 'react-wrap-balancer'
+
+// wrap Balancer to remove type errors :( - @TODO - fix this ugly hack
+const BalancerWrapper = (props: any) => <Balancer {...props} />
 
 export type Message = {
   who: 'henry' | 'user' | undefined
@@ -62,9 +66,11 @@ export function ChatLine({ who = 'henry', message }: Message) {
                 : 'text-gray-400 dark:text-gray-500'
             )}
           >
-            {!!message
-              ? message
-              : 'lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus magnam voluptatum cupiditate veritatis in accusamus quisquam.'}
+            <BalancerWrapper>
+              {!!message
+                ? message
+                : 'lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus magnam voluptatum cupiditate veritatis in accusamus quisquam.'}
+            </BalancerWrapper>
           </p>
         </div>
       </div>
