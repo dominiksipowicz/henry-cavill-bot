@@ -2,7 +2,7 @@
 
 This is a chat bot that will respond to you with Henry Cavill character quotes, images, and light hearted jokes.
 
-![CleanShot 2022-11-27 at 01 58 18](https://user-images.githubusercontent.com/1570963/204115790-d919dc4d-29ca-42f1-88f1-439df882aef7.png)
+![Henry Cavil Chat Bot](https://user-images.githubusercontent.com/1570963/204173425-1d1d4638-60a0-4724-bede-b2b1f5fcde93.png)
 
 ## Getting started
 
