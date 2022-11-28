@@ -34,6 +34,15 @@ export const LoadingChatLine = () => (
   </div>
 )
 
+// util helper to convert new lines to <br /> tags
+const convertNewLines = (text: string) =>
+  text.split('\n').map((line, i) => (
+    <span key={i}>
+      {line}
+      <br />
+    </span>
+  ))
+
 export function ChatLine({ who = 'henry', message }: Message) {
   return (
     <BalancerWrapper
@@ -68,7 +77,7 @@ export function ChatLine({ who = 'henry', message }: Message) {
               )}
             >
               {!!message
-                ? message
+                ? convertNewLines(message)
                 : 'lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus magnam voluptatum cupiditate veritatis in accusamus quisquam.'}
             </p>
           </div>
