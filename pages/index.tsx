@@ -15,7 +15,7 @@ const Home: NextPage = () => {
         <title>Henry Cavill Chat Bot - quotes, pictures and light Chat</title>
         <meta
           name="description"
-          content="I’m Spencer, a software designer and entrepreneur based in New York City. I’m the founder and CEO of Planetaria, where we develop technologies that empower regular people to explore space on their own terms."
+          content="I’m Henry Cavil, an AI bot that can talk, joke, and hold a simple conversation based on Henry Cavill characters such as the Witcher, Superman, and Sherlock Holmes in the form of an AI"
         />
       </Head>
       <Container className="mt-9">
