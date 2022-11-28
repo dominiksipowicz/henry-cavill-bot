@@ -67,21 +67,32 @@ export function Chat({ setShowDescription }) {
   // send message to API /api/chat endpoint
   const sendMessage = async (message: string) => {
     setLoading(true)
-    await setMessages([...messages, { message: message, who: 'user' }])
+    const newMessages = [
+      ...messages,
+      { message: message, who: 'user' } as Message,
+    ]
+    setMessages(newMessages)
+    const last10mesages = newMessages.slice(-10)
 
     const response = await fetch('/api/chat', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ prompt: message, user: cookie[COOKIE_NAME] }),
+      body: JSON.stringify({
+        prompt: message,
+        messages: last10mesages,
+        user: cookie[COOKIE_NAME],
+      }),
     })
     const data = await response.json()
 
+    // stip out white spaces from the bot message
+    const botNewMessage = data.text.trim()
+
     setMessages([
-      ...messages,
-      { message: message, who: 'user' },
-      { message: data.text, who: 'henry' },
+      ...newMessages,
+      { message: botNewMessage, who: 'henry' } as Message,
     ])
     setLoading(false)
   }
@@ -95,7 +106,7 @@ export function Chat({ setShowDescription }) {
       {loading && <LoadingChatLine />}
 
       {messages.length < 2 && (
-        <span className="mx-auto dark:text-white">
+        <span className="mx-auto flex flex-grow dark:text-white">
           Type a message to start the conversation
         </span>
       )}
