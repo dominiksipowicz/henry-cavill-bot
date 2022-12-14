@@ -1,6 +1,9 @@
-import { Configuration, OpenAIApi } from 'openai'
+import { useResult as vrq } from 'vrq';
 
-import { initialMessages } from '../../components/Chat' 
+import { Configuration, OpenAIApi } from 'openai'
+import type { NextApiResponse } from 'next';
+
+import { initialMessages } from '../../components/Chat'
 import { type Message } from '../../components/ChatLine'
 
 const configuration = new Configuration({
@@ -32,25 +35,25 @@ const generatePromptFromMessages = (messages: Message[]) => {
   if (messagesWithoutFirstConvo.length == 0) {
     return prompt
   }
-    
+
   messagesWithoutFirstConvo.forEach((message: Message) => {
     const name = message.who === 'user' ? userName : botName
     prompt += `\n${name}: ${message.message}`
   })
   return prompt
-  
+
 }
 
-export default async function handler(req: any, res: any) {  
+export default async function handler(req: any, res: NextApiResponse<{ id: string }>) {
 
   const prompt = req.body.prompt;
   const messages = req.body.messages;
   const messagesPrompt = generatePromptFromMessages(messages)
   const defaultPrompt = `I am Henry Cavil. \n\nThis is the conversation between Henry Cavil and a news reporter.\n\n${botName}: ${firstMessge}\n${userName}: ${messagesPrompt}\n${botName}: `;
   const finalPrompt = process.env.OPENAI_API_KEY ? `${process.env.AI_PROMPT}${messagesPrompt}\n${botName}: ` : defaultPrompt
-  
+
   console.log(' == finalPrompt', finalPrompt)
-  
+
   const payload = {
     model: "text-davinci-003",
     prompt: finalPrompt,
@@ -63,9 +66,12 @@ export default async function handler(req: any, res: any) {
     user: req.body?.user
   };
 
-  const response = await openai.createCompletion(payload);
-  const firstResponse = response.data.choices[0].text;
-  
-  res.status(200).json({ text: firstResponse })
+  const { id } = await vrq.openai.createCompletion(payload);
+
+  // const response = await openai.createCompletion(payload);
+  // const firstResponse = response.data.choices[0].text;
+
+  res.status(202).json({ id })
+  // res.status(200).json({ text: firstResponse })
 }
 

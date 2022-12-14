@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Button } from './Button'
 import { type Message, ChatLine, LoadingChatLine } from './ChatLine'
 import { useCookies } from 'react-cookie'
+import { useResult } from 'vrq'
 
 const COOKIE_NAME = 'henry-cavill-chat'
 
@@ -11,6 +12,7 @@ export const initialMessages: Message[] = [
     message: 'Hi! I’m Henry Cavill. What would you like to know about me?',
   },
 ]
+// ok installed 
 
 const InputMessage = ({ input, setInput, sendMessage }: any) => (
   <div className="mt-6 flex">
@@ -74,6 +76,16 @@ export function Chat({ setShowDescription }) {
     setMessages(newMessages)
     const last10mesages = newMessages.slice(-10)
 
+    // const { loading, result } = await fetch('/api/chat')
+
+    const { loading, result, create } = useResult("/api/chat")
+
+    create({
+      prompt: message,
+      messages: last10mesages,
+      user: cookie[COOKIE_NAME],
+    })
+
     const response = await fetch('/api/chat', {
       method: 'POST',
       headers: {
@@ -86,6 +98,7 @@ export function Chat({ setShowDescription }) {
       }),
     })
     const data = await response.json()
+    console.log({ data });
 
     // stip out white spaces from the bot message
     const botNewMessage = data.text.trim()
