@@ -105,7 +105,7 @@ export function Chat({ setShowDescription }) {
       {loading && <LoadingChatLine />}
 
       {messages.length < 2 && (
-        <span className="flex flex-grow mx-auto dark:text-white">
+        <span className="mx-auto flex flex-grow dark:text-white">
           Type a message to start the conversation
         </span>
       )}
