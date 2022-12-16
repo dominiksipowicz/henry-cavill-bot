@@ -1,17 +1,15 @@
-import { Configuration, OpenAIApi } from 'openai'
-
-import { initialMessages } from '../../components/Chat' 
+import { OpenAI } from "vrq/openai"
+import { initialMessages } from '../../components/Chat'
 import { type Message } from '../../components/ChatLine'
 
-const configuration = new Configuration({
-  apiKey: process.env.OPENAI_API_KEY,
-});
 
 const botName = 'Henry';
 const userName = 'News reporter';
 const firstMessge = initialMessages[0].message
 
-const openai = new OpenAIApi(configuration);
+const openai = new OpenAI({
+  openaiApiKey: process.env.OPENAI_API_KEY, // or omit this to load from env automatically
+});
 
 
 // @TODO: unit test this. good case for unit testing
@@ -32,25 +30,25 @@ const generatePromptFromMessages = (messages: Message[]) => {
   if (messagesWithoutFirstConvo.length == 0) {
     return prompt
   }
-    
+
   messagesWithoutFirstConvo.forEach((message: Message) => {
     const name = message.who === 'user' ? userName : botName
     prompt += `\n${name}: ${message.message}`
   })
   return prompt
-  
+
 }
 
-export default async function handler(req: any, res: any) {  
+export default async function handler(req: any, res: any) {
 
   const prompt = req.body.prompt;
   const messages = req.body.messages;
   const messagesPrompt = generatePromptFromMessages(messages)
   const defaultPrompt = `I am Henry Cavil. \n\nThis is the conversation between Henry Cavil and a news reporter.\n\n${botName}: ${firstMessge}\n${userName}: ${messagesPrompt}\n${botName}: `;
   const finalPrompt = process.env.OPENAI_API_KEY ? `${process.env.AI_PROMPT}${messagesPrompt}\n${botName}: ` : defaultPrompt
-  
+
   console.log(' == finalPrompt', finalPrompt)
-  
+
   const payload = {
     model: "text-davinci-003",
     prompt: finalPrompt,
@@ -62,10 +60,6 @@ export default async function handler(req: any, res: any) {
     stop: [`${botName}:`, `${userName}:`],
     user: req.body?.user
   };
-
-  const response = await openai.createCompletion(payload);
-  const firstResponse = response.data.choices[0].text;
-  
-  res.status(200).json({ text: firstResponse })
+  res.status(200).json(await openai.createCompletion(payload))
 }
 

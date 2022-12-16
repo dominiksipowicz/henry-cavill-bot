@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Button } from './Button'
 import { type Message, ChatLine, LoadingChatLine } from './ChatLine'
 import { useCookies } from 'react-cookie'
+import { useResult } from "vrq"
 
 const COOKIE_NAME = 'henry-cavill-chat'
 
@@ -46,7 +47,6 @@ const InputMessage = ({ input, setInput, sendMessage }: any) => (
 export function Chat({ setShowDescription }) {
   const [messages, setMessages] = useState<Message[]>(initialMessages)
   const [input, setInput] = useState('')
-  const [loading, setLoading] = useState(false)
   const [cookie, setCookie] = useCookies([COOKIE_NAME])
 
   // disable description box in react effect when chat is active (more than 1 message)
@@ -64,9 +64,23 @@ export function Chat({ setShowDescription }) {
     }
   }, [cookie, setCookie])
 
-  // send message to API /api/chat endpoint
+
+  const { result, loading, create } = useResult<any, any>("/api/chat")
+
+
+  useEffect(() => {
+    if (!result) {
+      return
+    }
+    console.log(JSON.stringify({ result }))
+    setMessages([
+      ...messages,
+      { message: result.choices[0].text.trim(), who: 'henry' } as Message,
+    ])
+
+  }, [result])
+
   const sendMessage = async (message: string) => {
-    setLoading(true)
     const newMessages = [
       ...messages,
       { message: message, who: 'user' } as Message,
@@ -74,28 +88,13 @@ export function Chat({ setShowDescription }) {
     setMessages(newMessages)
     const last10mesages = newMessages.slice(-10)
 
-    const response = await fetch('/api/chat', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        prompt: message,
-        messages: last10mesages,
-        user: cookie[COOKIE_NAME],
-      }),
+    await create({
+      prompt: message,
+      messages: last10mesages,
+      user: cookie[COOKIE_NAME],
     })
-    const data = await response.json()
-
-    // stip out white spaces from the bot message
-    const botNewMessage = data.text.trim()
-
-    setMessages([
-      ...newMessages,
-      { message: botNewMessage, who: 'henry' } as Message,
-    ])
-    setLoading(false)
   }
+
 
   return (
     <div className="rounded-2xl border-zinc-100 dark:border-zinc-700/40 lg:border lg:p-6">
